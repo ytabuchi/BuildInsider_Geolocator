@@ -1,0 +1,2 @@
+# BuildInsider_Geolocator
+Geolocator説明用のレポジトリです。XamarinネイティブのプロジェクトとXamarin.Formsのプロジェクトがあります。
