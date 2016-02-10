@@ -12,13 +12,13 @@ using Android.Util;
 namespace X_Geolocator.Droid
 {
 	[Activity (Label = "X_Geolocator.Droid", MainLauncher = true, Icon = "@drawable/icon")]
-	public class MainActivity : Activity
-	{
+	public class MainActivity : Activity, ILocationListener
+    {
         LocationManager locMgr;
         string tag = "MainActivity";
         Button button;
         TextView latText;
-        TextView lanText;
+        TextView lonText;
 
 		protected override void OnCreate (Bundle bundle)
 		{
@@ -26,9 +26,9 @@ namespace X_Geolocator.Droid
 
 			SetContentView (Resource.Layout.Main);
 
-			button = FindViewById<Button> (Resource.Id.myButton);
+			button = FindViewById<Button> (Resource.Id.Button);
             latText = FindViewById<TextView>(Resource.Id.LatText);
-            lanText = FindViewById<TextView>(Resource.Id.LanText);
+            lonText = FindViewById<TextView>(Resource.Id.LonText);
 
 		}
 
@@ -44,13 +44,13 @@ namespace X_Geolocator.Droid
                 if (locMgr.AllProviders.Contains(LocationManager.NetworkProvider)
                         && locMgr.IsProviderEnabled(LocationManager.NetworkProvider))
                 {
-                    // Network: Wifi と 3G で位置情報を取得します。電池使用量は少ないですが精度にばらつきがあります。
+                    // Network: Wifiと3Gで位置情報を取得します。電池使用量は少ないですが精度にばらつきがあります。
                     Log.Debug(tag, "Starting location updates with Network");
                     locMgr.RequestLocationUpdates(LocationManager.NetworkProvider, 10000, 10, this);
                 }
                 else
                 {
-                    // GetBestProvider で最適な Provider を利用できるようです。(Network があればそれが Best になるようです。)
+                    // GetBestProviderで最適なProviderを利用できるようです。(NetworkがあればそれがBestProviderになるようです。)
                     var locationCriteria = new Criteria();
                     locationCriteria.Accuracy = Accuracy.Coarse;
                     locationCriteria.PowerRequirement = Power.Medium;
@@ -60,6 +60,36 @@ namespace X_Geolocator.Droid
                     locMgr.RequestLocationUpdates(locationProvider, 10000, 10, this);
                 }
             };
+        }
+
+        public void OnLocationChanged(Android.Locations.Location location)
+        {
+            Log.Debug(tag, "Location changed");
+            latText.Text = "Latitude: " + location.Latitude.ToString();
+            lonText.Text = "Longitude: " + location.Longitude.ToString();
+        }
+
+        public void OnProviderDisabled(string provider)
+        {
+            // Android 側で手動で位置情報モードを変更すると発火します。
+            Log.Debug(tag, provider + " provider disabled");
+        }
+
+        public void OnProviderEnabled(string provider)
+        {
+            Log.Debug(tag, provider + " enabled by user");
+        }
+
+        public void OnStatusChanged(string provider, [GeneratedEnum] Availability status, Bundle extras)
+        {
+            Log.Debug(tag, provider + " availability has changed to " + status.ToString());
+        }
+
+        protected override void OnPause()
+        {
+            base.OnPause();
+            Log.Debug(tag, "OnPause, stop location manager update");
+            locMgr.RemoveUpdates(this);
         }
     }
 }

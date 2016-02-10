@@ -2,9 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent"
+    android:padding="8dp">
     <Button
-        android:id="@+id/myButton"
+        android:id="@+id/Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/hello" />
@@ -19,5 +20,5 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/LanText" />
+        android:id="@+id/LonText" />
 </LinearLayout>

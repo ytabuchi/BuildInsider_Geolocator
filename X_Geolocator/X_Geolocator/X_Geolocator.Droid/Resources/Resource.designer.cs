@@ -60,14 +60,14 @@ namespace X_Geolocator.Droid
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f050002
-			public const int LanText = 2131034114;
+			// aapt resource value: 0x7f050000
+			public const int Button = 2131034112;
 			
 			// aapt resource value: 0x7f050001
 			public const int LatText = 2131034113;
 			
-			// aapt resource value: 0x7f050000
-			public const int myButton = 2131034112;
+			// aapt resource value: 0x7f050002
+			public const int LonText = 2131034114;
 			
 			static Id()
 			{

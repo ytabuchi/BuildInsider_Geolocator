@@ -29,10 +29,6 @@ namespace XF_Geolocator
                 var locator = CrossGeolocator.Current;
                 locator.DesiredAccuracy = 50;
 
-                System.Diagnostics.Debug.WriteLine("Available: " + locator.IsGeolocationAvailable);
-                System.Diagnostics.Debug.WriteLine("Enable: " + locator.IsGeolocationEnabled);
-
-
                 if (locator.IsGeolocationAvailable)
                 {
                     if (locator.IsGeolocationEnabled)
@@ -64,19 +60,19 @@ namespace XF_Geolocator
 
 
             };
+
             latLabel = new Label
             {
                 Text = "Latitude: "
             };
             lonLabel = new Label
             {
-                Text = "Langitude: "
+                Text = "Longitude: "
             };
 
             Content = new StackLayout
             {
-                Padding = 10,
-                VerticalOptions = LayoutOptions.Center,
+                Padding = new Thickness(10, Device.OnPlatform(20, 0, 0), 10, 10),
                 Children = {
                     button,
                     latLabel,
