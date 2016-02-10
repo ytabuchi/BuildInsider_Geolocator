@@ -16,7 +16,7 @@ namespace XF_Geolocator
         Button button;
         Label latLabel;
         Label lonLabel;
-        Plugin.Geolocator.Abstractions.Position position;
+        Position position;
 
         public GetGeoCS()
         {
@@ -26,7 +26,7 @@ namespace XF_Geolocator
             };
             button.Clicked += async (sender, e) =>
             {
-                var locator = CrossGeolocator.Current;
+                IGeolocator locator = CrossGeolocator.Current;
                 locator.DesiredAccuracy = 50;
 
                 if (locator.IsGeolocationAvailable)
