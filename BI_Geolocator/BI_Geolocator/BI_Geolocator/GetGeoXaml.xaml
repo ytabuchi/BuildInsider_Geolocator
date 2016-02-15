@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BI_Geolocator.GetGeoXaml">
+
+  <StackLayout>
+    <StackLayout.Padding>
+      <OnPlatform x:TypeArguments="Thickness"
+                iOS="10, 30, 10, 10"
+                Android="10"
+                WinPhone="10" />
+    </StackLayout.Padding>
+
+    <Button Text="Get Geolocator" Clicked="buttonClicked" />
+    <Label x:Name="latLabel" Text="Latitude: " />
+    <Label x:Name="lonLabel" Text="Longitude: " />
+  </StackLayout>
+</ContentPage>
