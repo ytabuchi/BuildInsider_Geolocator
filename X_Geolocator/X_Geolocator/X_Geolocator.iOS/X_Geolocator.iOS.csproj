@@ -70,8 +70,11 @@
     <MtouchArch>ARMv7, ARM64</MtouchArch>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchProfiling>true</MtouchProfiling>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>iPhone Developer: Yoshito Tabuchi (6ZZLKYWJMV)</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
+    <CodesignProvision>fe99c63c-31cb-41c7-90c4-f362359dfd31</CodesignProvision>
+    <CodesignResourceRules />
+    <CodesignExtraArgs />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
